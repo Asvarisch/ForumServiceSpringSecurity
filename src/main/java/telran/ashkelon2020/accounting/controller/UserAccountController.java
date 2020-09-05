@@ -1,7 +1,6 @@
 package telran.ashkelon2020.accounting.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.security.core.Authentication;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -16,7 +15,6 @@ import telran.ashkelon2020.accounting.dto.RolesResponseDto;
 import telran.ashkelon2020.accounting.dto.UserAccountResponseDto;
 import telran.ashkelon2020.accounting.dto.UserRegisterDto;
 import telran.ashkelon2020.accounting.dto.UserUpdateDto;
-import telran.ashkelon2020.accounting.dto.exceptions.ForbiddenException;
 import telran.ashkelon2020.accounting.service.UserAccountService;
 
 @RestController
@@ -37,13 +35,13 @@ public class UserAccountController {
 	}
 
 	@PutMapping("/user/{login}")
-	@PreAuthorize("#login==authentication.name")
+	//@PreAuthorize("#login==authentication.name")
 	public UserAccountResponseDto updateUser(@PathVariable String login, @RequestBody UserUpdateDto userUpdateDto) {
 		return accountService.editUser(login, userUpdateDto);
 	}
 
 	@DeleteMapping("/user/{login}")
-	@PreAuthorize("#login==authentication.name")
+	//@PreAuthorize("#login==authentication.name")
 	public UserAccountResponseDto removeUser(@PathVariable String login) {
 		return accountService.removeUser(login);
 	}

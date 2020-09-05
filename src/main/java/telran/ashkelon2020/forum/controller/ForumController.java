@@ -3,7 +3,6 @@ package telran.ashkelon2020.forum.controller;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -27,7 +26,7 @@ public class ForumController {
 	ForumService service;
 
 	@PostMapping("/post/{author}")
-	@PreAuthorize("#author==authentication.name")
+	//@PreAuthorize("#author==authentication.name")
 	public PostDto addPost(@RequestBody NewPostDto newPost, @PathVariable String author) {
 		return service.addNewPost(newPost, author);
 	}
@@ -53,7 +52,7 @@ public class ForumController {
 	}
 
 	@PutMapping("/post/{id}/comment/{author}")
-	@PreAuthorize("#author==authentication.name")
+	//@PreAuthorize("#author==authentication.name")
 	public PostDto addComment(@PathVariable String id, @PathVariable String author, @RequestBody NewCommentDto newCommentDto) {
 		return service.addComment(id, author, newCommentDto);
 	}
